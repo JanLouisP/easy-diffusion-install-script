@@ -22,7 +22,7 @@ Resources:
             apt-get update
             apt-get install -y wget unzip
             cd /home/ubuntu
-            wget https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
+            sudo wget https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
             unzip Easy-Diffusion-Linux.zip
             sudo chown -R ubuntu:ubuntu easy-diffusion  # Set ownership to ubuntu user
             sudo chmod -R +x easy-diffusion  # Set executable permissions recursively
