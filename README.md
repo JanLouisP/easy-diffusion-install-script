@@ -24,7 +24,7 @@ wget https://civitai.com/api/download/models/152309 --content-disposition
 
 Connect to your ec2 instance an use this: 
 
-while true; 
+while true; \n
 do
 cat /var/log/cloud-init-output.log
 sleep 5
