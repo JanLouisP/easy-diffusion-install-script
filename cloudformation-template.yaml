@@ -21,11 +21,22 @@ Resources:
             #!/bin/bash
             apt-get update
             apt-get install -y wget unzip
+            cd /home/ubuntu
             wget https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
             unzip Easy-Diffusion-Linux.zip
             cd easy-diffusion
             chmod +x start.sh
-            ./start.sh
+            ./start.sh & # Running in the background
+            while ! nc -z localhost 9000; do   
+            sleep 1
+            done      
+            sleep 30
+            cd models/stable-diffusion
+            wget https://civitai.com/api/download/models/176040 --content-disposition  # Am I real
+            wget https://civitai.com/api/download/models/181248 --content-disposition  # Virile-reality
+            wget https://civitai.com/api/download/models/172160 --content-disposition  # Copax TimeLessXL
+            cd ../lora
+            wget https://civitai.com/api/download/models/152309 --content-disposition  # Lora
       SecurityGroupIds:
         - !Ref WebUISecurityGroup
       Tags:
