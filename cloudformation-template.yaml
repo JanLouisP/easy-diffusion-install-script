@@ -38,7 +38,7 @@ Resources:
             sudo wget https://civitai.com/api/download/models/181248 --content-disposition  # Virile-reality
             sudo wget https://civitai.com/api/download/models/172160 --content-disposition  # Copax TimeLessXL
             cd ../lora
-            wget https://civitai.com/api/download/models/152309 --content-disposition  # Lora
+            sudo wget https://civitai.com/api/download/models/152309 --content-disposition  # Lora
       SecurityGroupIds:
         - !Ref WebUISecurityGroup
       Tags:
