@@ -24,8 +24,8 @@ Resources:
             cd /home/ubuntu
             wget https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
             unzip Easy-Diffusion-Linux.zip
-            chown -R ubuntu:ubuntu easy-diffusion  # Set ownership to ubuntu user
-            chmod -R +x easy-diffusion  # Set executable permissions recursively
+            sudo chown -R ubuntu:ubuntu easy-diffusion  # Set ownership to ubuntu user
+            sudo chmod -R +x easy-diffusion  # Set executable permissions recursively
             cd easy-diffusion
             chmod +x start.sh
             ./start.sh & # Running in the background
