@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation template for sd-webui EC2 instance'
+
+Resources:
+
+  WebUIEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: g4dn.xlarge
+      ImageId: ami-0750979b79a8dd679
+      KeyName: webui
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 100
+      AvailabilityZone: eu-central-1a
+      UserData:
+        Fn::Base64: 
+          !Sub |
+            #!/bin/bash
+            apt-get update
+            apt-get install -y wget unzip
+            wget https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
+            unzip Easy-Diffusion-Linux.zip
+            cd easy-diffusion
+            chmod +x start.sh
+            ./start.sh
+      SecurityGroupIds:
+        - !Ref WebUISecurityGroup
+      Tags:
+        - Key: Name
+          Value: sd-webui
+
+  WebUISecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Allow all traffic
+      SecurityGroupIngress:
+        - IpProtocol: '-1'
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: sd-webui-sg
+
+Outputs:
+  WebUIInstancePublicIP:
+    Description: 'Public IP of the EC2 instance'
+    Value: !GetAtt WebUIEC2Instance.PublicIp
