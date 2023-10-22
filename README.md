@@ -1,5 +1,7 @@
 # easy-diffusion-install-script
 
+Before starting the script create a key pair called webui (rsa) in aws !!!!!!!!!!!!!!!!!!!!!!!
+
 #Takes up to 20 minutes. After its ready you can reach easy-diffusion you need to open a tunnel:
 putty -i path\to\your\key.ppk -N -L 9000:127.0.0.1:9000 ubuntu@publicAWSIpAddress
 
