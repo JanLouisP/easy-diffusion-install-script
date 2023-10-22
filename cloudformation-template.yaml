@@ -37,6 +37,7 @@ Resources:
             wget https://civitai.com/api/download/models/172160 --content-disposition  # Copax TimeLessXL
             cd ../lora
             wget https://civitai.com/api/download/models/152309 --content-disposition  # Lora
+            sudo reboot
       SecurityGroupIds:
         - !Ref WebUISecurityGroup
       Tags:
