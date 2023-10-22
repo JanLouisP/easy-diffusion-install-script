@@ -7,14 +7,14 @@ Resources:
     Type: 'AWS::EC2::Instance'
     Properties:
       InstanceType: g4dn.xlarge
-      ImageId: ami-0750979b79a8dd679
+      ImageId: ami-0750979b79a8dd679 #Change this to ami in your reagion with pytorch installed
       KeyName: webui
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
           Ebs:
             VolumeType: gp3
-            VolumeSize: 100
-      AvailabilityZone: eu-central-1a
+            VolumeSize: 100 #change this to your preferences
+      AvailabilityZone: eu-central-1a #change this to your region where you have access to xlarge G Instance
       UserData:
         Fn::Base64: 
           !Sub |
