@@ -1,7 +1,7 @@
 # easy-diffusion-install-script
 
 #Takes up to 20 minutes. After its ready you can reach easy-diffusion you need to open a tunnel:
-putty -i path\to\your\key.ppk -N -L 9000:127.0.0.1:9000 ubuntu@publicIpAddress
+putty -i path\to\your\key.ppk -N -L 9000:127.0.0.1:9000 ubuntu@publicAWSIpAddress
 
 Now you can reach easy-diffusion with: localhost:9000
 
