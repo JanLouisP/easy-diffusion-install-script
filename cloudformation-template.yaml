@@ -20,6 +20,7 @@ Resources:
           !Sub |
             #!/bin/bash
             apt-get update
+            apt-get upgrade -y
             apt-get install -y wget unzip
             cd /home/ubuntu
             sudo wget https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
@@ -29,16 +30,18 @@ Resources:
             cd easy-diffusion
             chmod +x start.sh
             ./start.sh & # Running in the background
-            while ! nc -z localhost 9000; do   
-            sleep 1
-            done      
-            sleep 30
+            # Wait until the models directory exists because ./start.sh clones the repo
+            while [ ! -d "models" ]; do
+            sleep 5 # Wait for 5 seconds before checking again
+            done     
+            sleep 5 # Who knows.. just another 5 sec :)
             cd models/stable-diffusion
-            sudo wget https://civitai.com/api/download/models/176040 --content-disposition  # Am I real
-            sudo wget https://civitai.com/api/download/models/181248 --content-disposition  # Virile-reality
-            sudo wget https://civitai.com/api/download/models/172160 --content-disposition  # Copax TimeLessXL
+            sudo wget https://civitai.com/api/download/models/176040 --content-disposition & # Am I real
+            sudo wget https://civitai.com/api/download/models/181248 --content-disposition & # Virile-reality
+            sudo wget https://civitai.com/api/download/models/172160 --content-disposition & # Copax TimeLessXL
             cd ../lora
-            sudo wget https://civitai.com/api/download/models/152309 --content-disposition  # Lora
+            sudo wget https://civitai.com/api/download/models/152309 --content-disposition & # Lora
+            wait # Wait for all background processes to complete
       SecurityGroupIds:
         - !Ref WebUISecurityGroup
       Tags:
