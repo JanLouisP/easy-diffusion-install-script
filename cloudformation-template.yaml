@@ -25,8 +25,6 @@ Resources:
             cd /home/ubuntu
             sudo wget https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
             unzip Easy-Diffusion-Linux.zip
-            sudo chown -R ubuntu:ubuntu easy-diffusion  # Set ownership to ubuntu user
-            sudo chmod -R +x easy-diffusion  # Set executable permissions recursively
             cd easy-diffusion
             chmod +x start.sh
             ./start.sh & # Running in the background
@@ -41,6 +39,8 @@ Resources:
             sudo wget https://civitai.com/api/download/models/172160 --content-disposition & # Copax TimeLessXL
             cd ../lora
             sudo wget https://civitai.com/api/download/models/152309 --content-disposition & # Lora
+            sudo chown -R ubuntu:ubuntu easy-diffusion  # Set ownership to ubuntu user
+            sudo chmod -R +x easy-diffusion  # Set executable permissions recursively
             wait # Wait for all background processes to complete
       SecurityGroupIds:
         - !Ref WebUISecurityGroup
